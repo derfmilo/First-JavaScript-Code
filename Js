@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+	<body>
+
+		<h1>JavaScript Example</h1>
+
+		<script>
+			document.write("<p>Hello, I am JavaScript A.K.A. JS I am a programming language I increase the speed by validating user inputs before sending to the server and also reducing the load on the server.I am a programming language that is easy to implement. </p>");
+		</script>
+	</body>
+</html>
