@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mason's Javascript Code</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> //Add and use jQuery it is much easier to use starting off
+<style>
+#text-content{
+     background-color:black;
+     color:white;
+     margin: 100px auto;
+     display:block;
+     width:90%;
+     height:90%;
+     padding:10%;
+     text-align:center;
+}
+</style>
+</head>
+	<body>
+
+		<h1>JavaScript Example</h1>
+                <div id="text-content"></div>
+		<script>
+			document.write("<p>Hello, I am JavaScript A.K.A. JS I am a programming language I increase the speed by validating user inputs before sending to the server and also reducing the load on the server.I am a programming language that is easy to implement. </p>");
+			$(document).ready(function(){
+				$('#text-content').append("<p>Hello, I am JavaScript A.K.A. JS I am a programming language I increase the speed by validating user inputs before sending to the server and also reducing the load on the server.I am a programming language that is easy to implement. </p>")
+				window.setTimeOut(function(){
+				      $('#text-content').html("<h1>This is how you can create dynamic looking content</h1>");
+				},3000);
+				window.setTimeOut(function(){
+				      $('#text-content').html("<h1I will keep adding code for you to see like animations and such</h1>");
+				},6000);
+				window.setTimeOut(function(){
+				      $('#text-content').html("Visit <a href='http://allthingsspace.com'>Click Now to see space!</a>");
+				},9000);
+			});
+		</script>
+	</body>
+</html>
