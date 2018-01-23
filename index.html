@@ -1,23 +1,367 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Mason's Javascript Code</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> //Add and use jQuery it is much easier to use starting off
+	<title>Mason's Javascript Code</title>
+	<!--Meta tags help Google, Facebook, Bing, Yahoo, and Twitter find you-->
+	<meta name="author" content="Mason Thompson"/>
+	<meta name="description" content="This is an example of a meta description. This will often show up in search results.">
+	<!--Facebook Meta Tags-->
+	<meta property="og:title" content="Mason's Javascript Code"/>
+	<meta property="og:image" content="https://davidwalsh.name/wp-content/themes/klass/img/facebooklogo.png"/>
+	<meta property="og:site_name" content="Mason's Code"/>
+	<meta property="og:description" content="Facebook's Open Graph protocol allows for web developers to turn their websites into Facebook "graph" objects, allowing a certain level of customization over how information is carried over from a non-Facebook website to Facebook when a page is 'recommended', 'liked', or just generally shared."/>
+	<!--INCLUDE JQuery-->
+	<!--jQuery is a reduced Javascript Library-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> //Add and use jQuery it is much easier to use starting off
+	<script type="text/javascript">
+		//Example jQuery
+		//$ is the jQuery Signifier
+		$( document ).ready(function() {
+			/*
+			TURNED OFF SO YOU CAN SEE JQUERY ANIMATE
+			# means id of container attribute and . is if you use class to declare it. Either works
+			$('#text-content').addClass('mean');
+			$('#text-content').removeClass('mean');
+    			console.log( "ready!" );
+			//call individual function;
+			mason(3);
+			function mason(constructor_value){
+				//jQuery Animate which can be used to make games by detecting keypress
+				//http://api.jquery.com/animate/
+			}*/	
+		});
+		$(function() {
+
+			  function randomNum(t, l) {
+			    return {
+			      top: Math.floor(Math.random() * (t + 1)),
+			      left: Math.floor(Math.random() * (l + 1))
+			    };
+			  }
+
+			  var divWidth = 230;
+			  var maxWidth = $(window).width() - 300;
+			  var divHeight = 230;
+			  var maxHeight = $(window).height() - 300;
+
+			  var $divs = $("div");
+			  for (var d = 0; d < $divs.length; d++) {
+			    $divs.eq(d).offset(randomNum(maxHeight, maxWidth));
+			  }
+
+			  animateDiv($("#green"));
+			  animateDiv($("#pink"));
+			  animateDiv($("#yellow"));
+			  animateDiv($("#purple"));
+			  animateDiv($("#white"));
+			  animateDiv($("#orange"));
+
+			  $("div").one("click", splitToSmall);
+
+			  function splitToSmall(e) {
+
+			    var $this = $(e.target);
+
+			    for (var i = 1; i < 7; i++) {
+			      $this.append("<div></div>");
+			    }
+
+			    var $smallDivs = $this.children();
+
+			    for (var index = 0; index < 6; index++) {
+			      var idN = index + 1;
+			      $smallDivs.eq(index).addClass("s" + idN);
+			    }
+
+			    $smallDivs.parent().css({
+			      "box-shadow": "none",
+			      "border": "none"
+			    });
+
+			    for (var s = 1; s < 7; s++) {
+			      $(".s" + s).switchClass("s" + s, "s" + s + "_move out", 5000, "easeOutExpo", out);
+			    }
+
+			    function out() {
+			      $(this).parent().remove();
+			    }
+
+			    console.log(e.target);
+			  }
+
+			  function newPosition() {
+
+			    var h = $(window).height() - 227;
+			    var w = $(window).width() - 227;
+
+			    var newH = Math.floor(Math.random() * (h + 1));
+			    var newW = Math.floor(Math.random() * (w + 1));
+
+			    return [newH, newW];
+
+			  }
+
+			  function animateDiv($target) {
+
+			    var newP = newPosition();
+
+			    $target.animate({
+			      top: newP[0],
+			      left: newP[1]
+			    }, 10000, function() {
+			      animateDiv($target);
+			    });
+
+			  };
+			  var intv;
+			  setTimeout(function() {
+			    intv = setInterval(produce, 1500);
+			  }, 5600);
+
+			  function produce() {
+			    var ranClr = ["clr1", "clr2", "clr3", "clr4", "clr5", "clr6"];
+			    var ranI = Math.floor(Math.random() * ranClr.length);
+
+			    var $newDiv = $(document.createElement("div")).attr("class", ranClr[ranI]).
+			    offset(randomNum(maxHeight, maxWidth)).one("click", splitToSmall);
+			    $("body").append($newDiv);
+			    $newDiv.hide().fadeIn();
+			    animateDiv($newDiv);
+			  }
+
+			  setInterval(function() {
+			    $("div").fadeOut(100, function() {
+			      $(this).remove();
+			    });
+			  }, 18500);
+
+			  console.log();
+
+		});
+	</script>
 <style>
-#text-content{
-     background-color:black;
-     color:white;
-     margin: 100px auto;
-     display:block;
-     width:90%;
-     height:90%;
-     padding:10%;
-     text-align:center;
-}
+	/*Inline CSS
+	Better To move to its own .css file
+	You can generate a file using sass	
+	*/
+	/* Try dual booting with Ubuntu 16.0.4 Operating System. Alot Easier to code with. Ask your dad to set it up*/
+	/*
+	TURNED OFF FOR YOU TO SEE JQUERY ANIMATION
+	#text-content{
+     		background-color:black;
+     		color:white;
+     		margin: 100px auto;
+     		display:block;
+     		width:90%;
+     		height:90%;
+     		padding:10%;
+     		text-align:center;
+	}*/
+	/*Animate CSS*/
+	html {
+	  background-color: black;
+	}
+
+	body {
+	  overflow: hidden;
+	}
+
+	audio {
+	  position: fixed;
+	  bottom: 0px;
+	  right: 0px;
+	  visibility: visible;
+	}
+
+	#vidBgPg {
+	  position: fixed;
+	  bottom: 0px;
+	  right: 0px;
+	  top: 0px;
+	  min-width: 100%;
+	  min-height: 100%;
+	  width: auto;
+	  height: auto;
+	  z-index: -100;
+	  overflow: hidden;
+	}
+
+	div {
+	  width: 230px;
+	  height: 230px;
+	  border: 1px solid;
+	  border-radius: 50%;
+	  /*left: 40%;
+	    top: 30%;*/
+
+	  position: absolute;
+	}
+
+	#white,
+	.clr1 {
+	  box-shadow: 10px 10px 240px 0px rgba(255, 255, 255, 0.8), inset 10px 10px 240px 0px rgba(255, 255, 255, 0.8);
+	  border-color: rgba(255, 255, 255, 0.4);
+	}
+
+	#pink,
+	.clr2 {
+	  box-shadow: 10px 10px 240px 0px rgba(130, 199, 197, 0.8), inset 10px 10px 240px 0px rgba(130, 199, 197, 0.8);
+	  border-color: rgba(130, 199, 197, 0.4);
+	}
+
+	#purple,
+	.clr3 {
+	  box-shadow: 10px 10px 240px 0px rgba(211, 168, 255, 0.8), inset 10px 10px 240px 0px rgba(211, 168, 255, 0.8);
+	  border-color: rgba(211, 168, 255, 0.4)
+	}
+
+	#yellow,
+	.clr4 {
+	  box-shadow: 10px 10px 240px 0px rgba(249, 165, 213, 0.8), inset 10px 10px 240px 0px rgba(249, 165, 213, 0.8);
+	  border-color: rgba(249, 165, 213, 0.4);
+	}
+
+	#green,
+	.clr5 {
+	  box-shadow: 10px 10px 240px 0px rgba(199, 255, 190, 0.8), inset 10px 10px 240px 0px rgba(199, 255, 190, 0.8);
+	  border-color: rgba(199, 255, 190, 0.4);
+	  left: 40%;
+	  top: 30%;
+	  /*position: relative;*/
+	}
+
+	#orange,
+	.clr6 {
+	  box-shadow: 10px 10px 240px 0px rgba(255, 181, 139, 0.8), inset 10px 10px 240px 0px rgba(255, 181, 139, 0.8);
+	  border-color: rgba(255, 181, 139, 0.4);
+	}
+
+	div > div {
+	  width: 70px;
+	  height: 70px;
+	  position: absolute;
+	  display: inline-block;
+	  margin-right: 30px;
+	  /*-webkit-animation: rotate 3s;
+	    -webkit-animation-iteration-count: infinite;*/
+	}
+
+	#green div,
+	.clr5 div {
+	  box-shadow: inset 2px 2px 50px 0px rgba(174, 226, 166, 0.8), 0px 0px 40px 0px rgba(174, 226, 166, 0.6);
+	  border-color: rgba(174, 226, 166, 0.4);
+	}
+
+	#yellow div,
+	.clr4 div {
+	  box-shadow: inset 2px 2px 50px 0px rgba(255, 119, 189, 0.8), 0px 0px 40px 0px rgba(255, 119, 189, 0.6);
+	  border-color: rgba(255, 119, 189, 0.4);
+	}
+
+	#purple div,
+	.clr3 div {
+	  box-shadow: inset 2px 2px 50px 0px rgba(211, 168, 255, 0.8), 0px 0px 40px 0px rgba(211, 168, 255, 0.6);
+	  border-color: rgba(211, 168, 255, 0.4);
+	}
+
+	#white div,
+	.clr1 div {
+	  box-shadow: inset 2px 2px 50px 0px rgba(255, 255, 255, 0.8), 0px 0px 40px 0px rgba(255, 255, 255, 0.6);
+	  border-color: rgba(255, 255, 255, 0.4);
+	}
+
+	#orange div,
+	.clr6 div {
+	  box-shadow: inset 2px 2px 50px 0px rgba(255, 181, 139, 0.8), 0px 0px 40px 0px rgba(255, 181, 139, 0.6);
+	  border-color: rgba(255, 181, 139, 0.4);
+	}
+
+	#pink div,
+	.clr2 div {
+	  box-shadow: inset 2px 2px 50px 0px rgba(130, 199, 197, 0.8), 0px 0px 40px 0px rgba(130, 199, 197, 0.6);
+	  border-color: rgba(130, 199, 197, 0.4);
+	}
+
+	.s1 {
+	  left: 33px;
+	  top: 13px;
+	}
+
+	.s1_move {
+	  left: -55px;
+	  top: -122px;
+	}
+
+	.s2 {
+	  left: 0px;
+	  top: 76px;
+	}
+
+	.s2_move {
+	  left: -158px;
+	  top: 111px;
+	}
+
+	.s3 {
+	  left: 38px;
+	  top: 140px;
+	}
+
+	.s3_move {
+	  left: -33px;
+	  top: 300px;
+	}
+
+	.s4 {
+	  left: 114px;
+	  top: 135px;
+	}
+
+	.s4_move {
+	  left: 296px;
+	  top: 270px;
+	}
+
+	.s5 {
+	  left: 113px;
+	  top: 11px;
+	}
+
+	.s5_move {
+	  left: 238px;
+	  top: -136px;
+	}
+
+	.s6 {
+	  left: 148px;
+	  top: 77px;
+	}
+
+	.s6_move {
+	  left: 384px;
+	  top: 63px;
+	}
+
+	.out {
+	  opacity: 0;
+	}
 </style>
 </head>
 	<body>
+		<!--Animate Code-->
+		<div id="white">
+		</div>
+		<div id="pink"></div>
+		<div id="purple"></div>
+		<div id="yellow"></div>
+		<div id="green"></div>
+		<div id="orange"></div>
 
+		<audio loop autoplay controls>  
+		  <source src="http://digitaleverything.net/demos/fluff/media/audio/1.mp3" type="audio/mpeg">
+		</audio>
+		<!--
+		TURNED OFF SO YOU CAN SEE ANIMATE JQUERY
 		<h1>JavaScript Example</h1>
                 <div id="text-content"></div>
 		<script>
@@ -35,5 +379,6 @@
 				},9000);
 			});
 		</script>
+		-->
 	</body>
 </html>
